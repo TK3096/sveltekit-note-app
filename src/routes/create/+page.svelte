@@ -2,16 +2,38 @@
   import Input from '$components/commons/Input.svelte'
   import Textarea from '$components/commons/Textarea.svelte'
   import Button from '$components/commons/Button.svelte'
+  import Alert from '$components/commons/Alert.svelte'
+
+  let message: string = ''
+
+  const handleSubmit = async (event: Event) => {
+    message = ''
+
+    const form = new FormData(event.target as HTMLFormElement)
+    const data = Object.fromEntries(form.entries())
+
+    const response = await fetch('/api/create', {
+      method: 'POST',
+      body: JSON.stringify({ ...data }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+
+    const result = await response.json()
+
+    if (!response.ok) {
+      message = result.message
+    }
+  }
 </script>
+
+<Alert show={!!message}>{message}</Alert>
 
 <form
   method="POST"
-  on:submit|preventDefault={(event) => {
-    const formData = new FormData(event.target)
-    const data = Object.fromEntries(formData.entries())
-
-    console.log(data)
-  }}
+  class="flex flex-col gap-2"
+  on:submit|preventDefault={handleSubmit}
 >
   <Input placeholder="Note title" label="Title" name="title" id="title" />
   <Textarea
@@ -20,7 +42,7 @@
     id="description"
     placeholder="Note content"
   />
-  <Button disabled>Submit</Button>
-  <Button varient="error">Submit 2</Button>
-  <Button varient="success">Submit 3</Button>
+  <div class="flex justify-center">
+    <Button type="submit">Submit</Button>
+  </div>
 </form>

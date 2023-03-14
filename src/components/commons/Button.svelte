@@ -36,7 +36,7 @@
   }
 </script>
 
-<div class="{bg2} inline-block rounded-md">
+<div class="{bg2} inline-block rounded-md w-fit">
   <button
     {disabled}
     {type}

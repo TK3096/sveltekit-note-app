@@ -1,6 +1,6 @@
 import { v4 as uuid } from 'uuid'
 
-interface INote {
+export interface INote {
   id?: string
   title: string
   description: string

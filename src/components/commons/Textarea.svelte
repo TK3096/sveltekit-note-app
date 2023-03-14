@@ -5,6 +5,7 @@
   export let id: string | undefined = undefined
   export let name: string | undefined = undefined
   export let rows: number = 4
+  export let required: boolean = false
 
   let isFocus = false
 
@@ -29,6 +30,7 @@
     {name}
     {placeholder}
     {rows}
+    {required}
     bind:value
     on:focus={handleFocus}
     on:blur={handleBlur}

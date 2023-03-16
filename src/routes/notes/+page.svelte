@@ -1,11 +1,11 @@
 <script lang="ts">
   import type { PageServerData } from './$types'
 
+  import List from '$components/notes/List.svelte'
+
   export let data: PageServerData
 </script>
 
-<h1>Todos list</h1>
+<h1 class="text-3xl font-bold mb-10">Notes ({data.notes.length})</h1>
 
-{#each data.notes as note}
-  <div>{note.title} - {note.description}</div>
-{/each}
+<List data={data.notes} />

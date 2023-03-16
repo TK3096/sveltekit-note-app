@@ -32,6 +32,7 @@
   class="fixed top-0 bottom-0 {background} w-screen h-16 ease-in-out duration-300"
 >
   <ul class="flex justify-center items-center flex-nowrap gap-12 h-full">
+    <NavbarItem label="Home" href="/" />
     <NavbarItem label="Create" href="/create" />
     <NavbarItem label="Notes" href="/notes" />
   </ul>

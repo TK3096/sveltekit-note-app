@@ -15,15 +15,17 @@
 
   let title: string = ''
   let description: string = ''
+  let slug: string = ''
   let isAlert: boolean = false
 
-  $: isDirty = title && description
+  $: isDirty = title && description && slug
   $: open = !!form?.message && isAlert
 
   const handleClear = () => {
     isAlert = false
     title = ''
     description = ''
+    slug = ''
   }
 </script>
 
@@ -62,7 +64,15 @@
     bind:value={description}
     required
   />
-  <div class="flex justify-center gap-3">
+  <Input
+    placeholder="slug"
+    label="Slug"
+    name="slug"
+    id="slug"
+    bind:value={slug}
+    required
+  />
+  <div class="flex justify-center gap-3 mt-3">
     <Button varient="error" on:click={handleClear}>Clear</Button>
     <Button type="submit" disabled={!isDirty}>Submit</Button>
   </div>

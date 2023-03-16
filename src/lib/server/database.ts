@@ -4,6 +4,7 @@ export interface INote {
   id?: string
   title: string
   description: string
+  slug: string
 }
 
 let notes: INote[] = [
@@ -11,24 +12,27 @@ let notes: INote[] = [
     id: 'test',
     title: 'This is test data',
     description: 'Description for test data',
+    slug: 'test-1',
   },
   {
     id: 'test2',
     title: 'This is test data 2',
     description: 'Description for test data',
+    slug: 'test-2',
   },
   {
     id: 'tes3',
     title: 'This is test data 3',
     description: 'Description for test data',
+    slug: 'test-3',
   },
 ]
 
 export const add = (data: INote) => {
-  const find = notes.find((note) => note.title === data.title)
+  const find = notes.find((note) => note.slug === data.slug)
 
   if (find) {
-    throw new Error('Note title is already exist')
+    throw new Error('This slug is already exist')
   }
 
   const id = uuid()

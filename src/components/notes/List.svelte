@@ -14,7 +14,7 @@
       <Card
         title={item.title}
         description={item.description}
-        on:click={() => goto(`/notes/${item.id}`)}
+        on:click={() => goto(`/notes/${item.slug}`)}
       />
     </li>
   {/each}

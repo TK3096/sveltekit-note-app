@@ -9,6 +9,7 @@ export const actions = {
     const data = await request.formData()
     const title = data.get('title') as string
     const description = data.get('description') as string
+    const slug = data.get('slug') as string
 
     let id = ''
 
@@ -16,6 +17,7 @@ export const actions = {
       id = await add({
         title,
         description,
+        slug,
       })
     } catch (error: unknown) {
       if (error instanceof Error) {

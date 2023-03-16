@@ -17,5 +17,7 @@
         on:click={() => goto(`/notes/${item.slug}`)}
       />
     </li>
+  {:else}
+    <p class="font-bold text-center col-span-1 md:col-span-2">Empty notes</p>
   {/each}
 </ul>

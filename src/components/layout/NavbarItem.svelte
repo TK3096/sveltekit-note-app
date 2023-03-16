@@ -5,7 +5,7 @@
 
 <li class="group">
   <div
-    class="relative group-hover:text-sky-600 group-hover:ease-in-out duration-300 px-3 cursor-pointer"
+    class="relative group-hover:text-sky-600 ease-in-out duration-300 px-3 cursor-pointer"
   >
     <a {href}>{label}</a>
     <span

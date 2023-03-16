@@ -7,29 +7,40 @@ export interface INote {
   slug: string
 }
 
+interface IFilterNote {
+  latest?: boolean
+}
+
 let notes: INote[] = [
   {
-    id: 'test',
-    title: 'This is test data',
-    description: 'Description for test data',
-    slug: 'test-1',
+    id: 'default-1',
+    title: 'Holding on!!!',
+    description:
+      '<p><strong>Holding on~</strong>, Why everythings so heavy.</p><p><strong>Holding on~</strong>, Why everythings so heavy.</p>',
+    slug: 'holding-on',
   },
   {
-    id: 'test2',
-    title: 'This is test data 2',
-    description: 'Description for test data',
-    slug: 'test-2',
+    id: 'default-2',
+    title: 'Crawling!!!',
+    description:
+      'Crawling in my skin. <br /> These wounds, they will not heal.',
+    slug: 'crawling',
   },
   {
-    id: 'tes3',
-    title: 'This is test data 3',
-    description: 'Description for test data',
-    slug: 'test-3',
+    id: 'default-3',
+    title: 'Crawling 2',
+    description: 'Fear is how I fall <br/> Confusing what is real',
+    slug: 'crawling-2',
   },
 ]
 
+const converSlug = (slug: string) => {
+  return slug.toLowerCase().replaceAll(' ', '-')
+}
+
 export const add = (data: INote) => {
-  const find = notes.find((note) => note.slug === data.slug)
+  const slug = converSlug(data.slug)
+  const find = notes.find((note) => note.slug === slug)
 
   if (find) {
     throw new Error('This slug is already exist')
@@ -37,33 +48,27 @@ export const add = (data: INote) => {
 
   const id = uuid()
 
-  notes = [...notes, { id, ...data }]
+  notes = [...notes, { id, ...data, slug }]
 
   return id
 }
 
-export const list = () => {
+export const list = (filter?: IFilterNote) => {
+  if (filter?.latest) {
+    const newNotes = notes.slice(-5)
+
+    return newNotes
+  }
+
   return notes
 }
 
-export const get = (id: string) => {
-  const find = notes.find((note) => (note.id = id))
+export const get = (slug: string) => {
+  const find = notes.find((note) => note.slug === slug)
 
   if (!find) {
     throw new Error('Note is not found')
   }
 
   return find
-}
-
-export const remove = (id: string) => {
-  const newNotes = notes.filter((note) => note.id !== id)
-
-  if (newNotes.length === notes.length) {
-    throw new Error('Note is not found')
-  }
-
-  notes = [...newNotes]
-
-  return true
 }

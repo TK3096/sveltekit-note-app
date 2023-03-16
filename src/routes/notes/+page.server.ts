@@ -1,8 +1,6 @@
 import type { PageServerLoad } from './$types'
 import type { INote } from '$lib/server/database'
 
-import { fail } from '@sveltejs/kit'
-
 import { list } from '$lib/server/database'
 
 export const load = (async () => {

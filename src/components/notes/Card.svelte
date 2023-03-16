@@ -10,11 +10,11 @@
   let interval: number | undefined
 
   const handleMouseEnter = () => {
-    if (titleElement) {
-      interval = setInterval(() => {
+    interval = setInterval(() => {
+      if (titleElement) {
         titleElement.scrollLeft += 1
-      }, 10)
-    }
+      }
+    }, 10)
   }
 
   const handleMouseLeave = () => {
